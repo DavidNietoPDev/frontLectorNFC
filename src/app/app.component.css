@@ -1,0 +1,47 @@
+.navbar.navbar-expand-lg{
+  background-color: #000000; 
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+
+.container-fluid mat-icon {
+  scale: 150%;
+  margin-left: 50px;
+  color: white
+}
+
+.textNav {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 20px;
+  color: white;
+}
+
+/* .button1 {
+  padding: 1em;
+  border-radius: 5px;
+  min-width: 125px;
+  border: none;
+  outline: none;
+  transition: .4s ease-in-out;
+  background-color: #171717;
+  color: white;
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+}
+
+.button1:hover {
+  background-color: rgb(134, 25, 25);
+} */
+
+
+ 

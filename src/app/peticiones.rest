@@ -1,0 +1,8 @@
+
+    POST https://test.bracelit.es/api/v1/login
+    Content-Type: application/json
+
+    {
+        "email": "jose@bracelit.es",
+        "password": "1234"
+    }

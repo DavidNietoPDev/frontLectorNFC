@@ -1,0 +1,47 @@
+<button class="buttonlogout" type="button" (click)="onClickLogOut()">
+  Cerrar sesión
+</button>
+<div class="contenedor" *ngIf="modal">
+  <div id="modal">
+    <p id="cierre">¿Confirma que desea cerrar sesión?</p>
+    <div id="botones">
+      <button id="bton1" (click)="aceptModal()">Aceptar</button>
+      <button id="bton2" (click)="cancelModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!modal" class="container">
+  <form class="form-group">
+    <p id="heading">Pase el chip por el lector</p>
+    <p id="ingrCarac">Ingrese el número máximo de caracteres a leer:<input  id="inNumber" type="number" name="inNumber" [(ngModel)]="cantidadMaxima"></p>
+    <div class="input1">
+      <input #inputcrypt autocomplete="off" id="in1" placeholder="Código NFC" name="inputcrypt" class="input-field" type="text" [(ngModel)]="encryptar" [maxlength]="cantidadMaxima" (keydown.enter)="onClickEncrypt()"> 
+    </div>
+    <ul *ngIf="mostrarHash">
+      <li *ngFor="let codigo of getParCodigosKeys()">{{ codigo }}: {{ codigosNfc.get(codigo) }}</li>
+    </ul>
+    <div style="color: white">
+    </div>
+    <div class="bton">
+      <button [disabled]="showLoading" class="button1en" type="button" (click)="onClickEncrypt()">Encryptar</button>
+      <button class="button3cle" type="button" (click)="clear()">Clear</button>
+    </div>
+    <!-- <div class="bton">
+      <button class="button3cle" type="button" (click)="clear()">Clear</button>
+    </div> -->
+    <div class="bton">
+      <button class="button2des" type="button" (click)="mostrarLista()">Mostrar códigos</button>
+    </div>
+    <div class="matProgress">
+      <mat-progress-spinner  diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
+    </div> 
+    <!--
+    <div class="input2">
+      <input autocomplete="off" id="in2" placeholder="Código hash" name="encryptado" class="input-field" type="text" >
+    </div>
+    <textarea readonly class="textarea" > Código chip: {{encryptar}}
+    </textarea> -->
+    <div class="cont" > Conteo: {{codigosLeidos}} 
+    </div>
+  </form>
+</div>

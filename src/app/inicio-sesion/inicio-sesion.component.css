@@ -1,0 +1,122 @@
+
+  .container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .form-group {
+
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #1a1a1a;
+    border-radius: 25px;
+    transition: .4s ease-in-out;
+
+  }
+  
+  
+  #heading {
+    text-align: center;
+    margin: 2em;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+  }
+  
+  .text-danger {
+    margin-top: -1em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+
+  .f {
+    margin-bottom: 15px !important;
+    width: 350px;
+    margin: auto;
+    min-width: 255px;
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    border-radius: 25px;
+    padding: 0.5em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+ 
+
+  /* Con éstos input logramos que el autocompletado no cambie el formato que tenemos */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #171717 inset;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: white;
+  }
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.2em;
+    width: 1.2em;
+    fill: white;
+  }
+  
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+  }
+
+ 
+  .bton {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+  }
+  
+  .button1 {
+    
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    min-width: 125px;
+    margin-bottom: 70px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #171717;
+    color: white;
+  }
+  
+  .button1:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .matProgress {
+    position: relative;
+    top: -40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+
