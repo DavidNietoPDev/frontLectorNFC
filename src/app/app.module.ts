@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 
@@ -21,6 +22,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppComponent,
     InicioSesionComponent,
     ParseoComponent,
+    UserRegisterComponent,
 
     
   ],

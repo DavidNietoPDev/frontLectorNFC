@@ -19,13 +19,12 @@
       <p class="text-danger" *ngIf="hasErrors('password', 'required')"> Por favor, ingrese una contraseña.</p>
       <p class="text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
     </div>
-    <!-- <div class="buttons"> -->
       <div class="bton">
         <button class="button1" type="button" (click)="onSubmit()" [disabled]="showLoading">Entrar</button>
       </div>
       <hr class="line">
       <div class="textRegis">
-        <p class="text">¿No tienes cuenta? <span class="regis">Regístrate</span></p>
+        <p class="text">¿No tienes cuenta? <span class="regis" [routerLink]="'/userRegister'">Regístrate</span></p>
       </div>
     <div class="matProgress">
       <mat-progress-spinner diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>

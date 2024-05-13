@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { ParseoComponent } from './parseo/parseo.component';
 import { loginGuard } from './guards/login.guard';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 const routes: Routes = [
 
   {path: 'login', component: InicioSesionComponent},
+  {path: 'userRegister', component: UserRegisterComponent},
   {
     path: 'parseo', 
     component: ParseoComponent,

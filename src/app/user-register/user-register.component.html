@@ -1,0 +1,33 @@
+<button class="buttonlogout" type="button" [routerLink]="'/login'">
+    Volver atrás
+  </button>
+<div class="container">
+    <form class="form-group" [formGroup]="formulario">
+        <p id="heading">Registro</p>
+        <div class="f">
+            <mat-icon class="icon">mail_outline</mat-icon>
+            <input id="in1" name="email"
+                [ngClass]="{'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email')}"
+                placeholder="email" class="input-field" type="email" formControlName="email" autocomplete="username">
+        </div>
+        <div class="Validaton">
+            <p class="text-danger" *ngIf="hasErrors('email', 'email')">Email con formato inválido.</p>
+            <p class="text-danger" *ngIf="hasErrors('email', 'required')"> Por favor, ingrese un email.</p>
+        </div>
+        <div class="f">
+            <mat-icon class="icon">lock</mat-icon>
+            <input name="password" placeholder="Contraseña" class="input-field" type="password"
+                formControlName="password" autocomplete="current-password">
+        </div>
+        <div class="Validaton">
+            <p class="text-danger" *ngIf="hasErrors('password', 'required')"> Por favor, ingrese una contraseña.</p>
+            <p class="text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
+        </div>
+        <div class="bton">
+            <button class="button1" type="button" (click)="onSubmit()" [disabled]="showLoading">Registrarse</button>
+        </div>
+        <div class="matProgress">
+            <mat-progress-spinner diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
+        </div>
+    </form>
+</div>
