@@ -3,10 +3,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 75vh;
   }
+  
   .form-group {
-
     width: 550px;
     display: flex;
     flex-direction: column;
@@ -14,12 +14,11 @@
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 0.4em;
-    background-color: #1a1a1a;
+    background-color: #121212;
     border-radius: 25px;
     transition: .4s ease-in-out;
 
   }
-  
   
   #heading {
     text-align: center;
@@ -82,7 +81,6 @@
     color: #d3d3d3;
   }
 
- 
   .bton {
     display: flex;
     justify-content: center;
@@ -100,16 +98,37 @@
     margin-bottom: 70px;
     border: none;
     outline: none;
-    transition: .4s ease-in-out;
     background-color: #171717;
     color: white;
   }
   
   .button1:hover {
-    background-color: black;
+    scale: 120%;
+    background-color: rgb(59, 155, 184);
     color: white;
   }
 
+  .line{
+    margin-top: -50px;
+    color: #494949;
+  }
+
+  .textRegis {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: #494949;
+  }
+
+  .regis {
+    color: white;
+    text-decoration: underline;
+    margin-left: 10px;
+  }
+  .regis:hover {
+    cursor: pointer;
+    color: rgb(59, 155, 184);
+  }
   .matProgress {
     position: relative;
     top: -40px;
@@ -117,6 +136,7 @@
     justify-content: center;
     align-items: center;
   }
+
 
   
 
