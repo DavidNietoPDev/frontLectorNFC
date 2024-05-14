@@ -5,6 +5,7 @@
   height: 75vh;
 }
 .form-group {
+  margin-top: 50px;
   width: 550px;
   display: flex;
   flex-direction: column;

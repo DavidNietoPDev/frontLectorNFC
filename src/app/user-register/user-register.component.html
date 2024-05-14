@@ -26,6 +26,10 @@
         <div class="bton">
             <button class="button1" type="button" (click)="onSubmit()" [disabled]="showLoading">Registrarse</button>
         </div>
+        <hr class="line">
+      <div class="textRegis">
+        <p class="text">¿Has olvidado la contraseña? <span class="regis">Pulsa aquí</span></p>
+      </div>
         <div class="matProgress">
             <mat-progress-spinner diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
         </div>
