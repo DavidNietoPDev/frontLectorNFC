@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  baseUrl = 'https://test.bracelit.es/api/v1/login';
+  baseUrl = 'http://localhost:3000/api/users';
   httpClient = inject(HttpClient);
 
 
@@ -15,7 +15,13 @@ export class UsersService {
 // El método login devuelve una Promesa que permite manejar la respuesta de manera asíncrona en el código que llama a este método. 
   login(formValue: any) {                             
     return firstValueFrom(                            
-      this.httpClient.post<any>(this.baseUrl, formValue)
+      this.httpClient.post<any>(this.baseUrl + '/login', formValue)
+    );
+  }
+
+  register(formValue: any) {
+    return firstValueFrom(
+      this.httpClient.post<any>(this.baseUrl + '/register', formValue)
     );
   }
 }

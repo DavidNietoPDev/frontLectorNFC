@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ModoOscuroService } from './services/modo-oscuro.service';
+
 
 
 
@@ -10,11 +10,8 @@ import { ModoOscuroService } from './services/modo-oscuro.service';
 })
 export class AppComponent implements OnInit{
   title = 'sistemaParseo';
-  ModoOscuroService = inject(ModoOscuroService);
+
      
-toggleDarkMode() {
-  this.ModoOscuroService.toggleDarkMode();
-}
 
 ngOnInit() {
   document.body.classList.add('dark-mode');

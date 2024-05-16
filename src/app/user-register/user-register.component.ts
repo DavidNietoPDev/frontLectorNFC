@@ -21,7 +21,7 @@ export class UserRegisterComponent {
   router = inject(Router)
   errorMessage: string = '';
   showLoading: boolean = false;
-  
+
   constructor() {
     this.formulario = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -29,30 +29,24 @@ export class UserRegisterComponent {
     })
   }
 
-  async onSubmit() { 
+  async onSubmit() {
     try {
       if (this.formulario.valid) {
         this.showLoading = true;
-        const response = await this.usersService.login(this.formulario.value);
+        const response = await this.usersService.register(this.formulario.value);
         //Si todo es correcto se recibe el token, se guarda en las cookies y se redirige a parseo.
-        if (!response.error) { 
+        if (!response.error) {
           this.cookies.set('token_login', response.token);
-          this.router.navigate(['/parseo'])
-          this.snackBar.open('Se ha registrado correctamente.', 'Cerrar', {duration: 5000});
-        } 
+          this.router.navigate(['/login'])
+          this.snackBar.open('Se ha registrado correctamente. A continuación inicie sesión.', 'Cerrar', { duration: 5000 });
+        }
       } else {
         this.errorMessage = 'Introduzca un email y contraseña.'
         this.showLoading = false;
-      }     
+      }
       // Capturamos cualquier error que se produzca en el login.
-    }  catch (error: any) {    
-      if (error.status === 401) {
-        this.errorMessage = 'Credenciales incorrectas. Por favor, verifique su email y contraseña.';
-        this.showLoading = false;
-      } else if (error.status === 404) {
-        this.errorMessage = 'Credenciales incorrectas. Por favor, verifique su email y contraseña.';
-        this.showLoading = false;
-      } else if (error.status === 500) {
+    } catch (error: any) {
+      if (error.status === 500) {
         this.errorMessage = 'Error interno del servidor. Por favor, inténtelo de nuevo más tarde.';
         this.showLoading = false;
       } else {
@@ -61,12 +55,12 @@ export class UserRegisterComponent {
       }
     }
   }
-  hasErrors( controlName: string, errorType: string) {
+  hasErrors(controlName: string, errorType: string) {
     return this.formulario.get(controlName)?.hasError(errorType) && this.formulario.get(controlName)?.touched;
   }
 
-  snackBarAdded( msj: string ) {
-    this.snackBar.open(msj, 'Cerrar', {duration: 5000});
+  snackBarAdded(msj: string) {
+    this.snackBar.open(msj, 'Cerrar', { duration: 5000 });
   }
 
 
