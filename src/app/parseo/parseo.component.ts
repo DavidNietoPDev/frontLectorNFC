@@ -34,7 +34,6 @@ export class ParseoComponent {
   modal: boolean = false;
   acept: boolean = false;
   cancel: boolean = false;
-  cantidadMaxima: number = 1; 
   showLoading: boolean = false;
    
 
@@ -44,8 +43,17 @@ export class ParseoComponent {
     if (this.token) {       
       try {                                             //Si existe el token lo decodificamos
         this.decodedToken = this.jwtHelper.decodeToken(this.token);
+
+        if (!this.decodedToken) {
+          console.log('Error al decodificar el token.');
+          return false;
+        }
+
         this.iatDate = new Date(this.decodedToken.iat * 1000);
         this.expDate = new Date(this.decodedToken.exp * 1000);
+
+        this.currentTime = new Date();
+
         if (this.expDate > this.currentTime) {                              // Si la fecha de expiración es mayor a la fecha actual el token es válido
           console.log('Token válido.');
               return true;
@@ -56,6 +64,7 @@ export class ParseoComponent {
         }
       } catch (error) {
           alert("Error: al decodificar el token");
+          this.clearTokenExp();
           return false;
       }
     }  else {
@@ -71,12 +80,10 @@ export class ParseoComponent {
       this.inputcrypt.nativeElement.focus();                      //(que contiene el elemento real del DOM) está disponible. Si es así, se establece el foco en este elemento.
     }
   }                                                          
-                                                                    
-    
+                                                             
   volverAFocus() {
     if (this.inputcrypt && this.inputcrypt.nativeElement) {       //para volver a establecer el foco en el elemento inputcrypt
       this.inputcrypt.nativeElement.focus();
-      
     }
   }
 
@@ -143,14 +150,13 @@ export class ParseoComponent {
 
   getParCodigosKeys(): string[] {         //Método para coger los últimos 10 elementos del map
     const claves: string[] = Array.from(this.codigosNfc.keys());  
-    const lastTenKeys = claves.slice(-10);
-    return lastTenKeys;
+    // const lastTenKeys = claves.slice(-10);
+    return claves;
   }
 
   mostrarLista(): void {                  //Método que muestra la lista de códigos
     this.mostrarHash = !this.mostrarHash;
   }
-
 
   onClickEncrypt() {
     this.showLoading = true;
@@ -163,12 +169,12 @@ export class ParseoComponent {
             this.volverAFocus(); // Devolver el foco al campo de entrada
             this.codigosLeidos = this.codigosNfc.size;  // Actualizar el contador de códigos leídos  
             this.clear();     // Limpiar el campo de entrada
-            this.snackBarAdded('Hash añadido a la base de datos') // Mostrar mensaje de éxito
+            this.snackBarAdded('Hash añadido a la lista de códigos hashs.') // Mostrar mensaje de éxito
           } catch (error) {
-            window.alert('Error al encriptarl el código')
+            window.alert('Error al encriptar el código')
           }   
       } else {       
-        window.alert('El código ya existe en la base de datos')
+        window.alert('El código ya ha sido leído y está en la lista de códigos hashs.')
         this.clear();
       }
     } else {   
@@ -185,7 +191,7 @@ export class ParseoComponent {
   }
 
   encrypt = (data: string): string => {                 //función para encriptar, recibe un string y retorna otro ya encriptado
-    return CryptoJS.AES.encrypt(data, '').toString();
+    return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
   }
 }
 
