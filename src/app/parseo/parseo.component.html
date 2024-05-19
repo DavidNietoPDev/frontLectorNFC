@@ -1,38 +1,64 @@
 <button class="buttonlogout" type="button" (click)="onClickLogOut()">
   Cerrar sesión
 </button>
-<div class="contenedor" *ngIf="modal">
-  <div id="modal">
-    <p id="cierre">¿Confirma que desea cerrar sesión?</p>
-    <div id="botones">
-      <button id="bton1" (click)="aceptModal()">Aceptar</button>
-      <button id="bton2" (click)="cancelModal()">Cancelar</button>
-    </div>
-  </div>
+
+<app-modal 
+*ngIf="modalLogout" [mensaje]="mensajeModalLogOut" 
+(modalChange)="onModalLogoutChange($event)" 
+(modalAcept)="onModalAceptLogout($event)">
+</app-modal>
+
+<app-modal 
+*ngIf="modalSave" [mensaje]="mensajeModalSave" 
+(modalChange)="onModalSaveChange($event)" 
+(modalAcept)="onModalAceptSave($event)">
+<div class="codDup" *ngIf="errorDuplicates.length > 0">
+  <p class="textCodDup">Se han encontrado los siguientes conflictos:</p>
+  <p class="textCodDup">Códigos Duplicados</p>
+  <ul *ngFor="let code of errorDuplicates; let i = index">
+    <li class="list"><span>{{i}}</span>{{code}}</li>
+  </ul>
 </div>
-<div *ngIf="!modal" class="container">
-  <form class="form-group">
-    <p id="heading">Pase el chip por el lector</p>
-    <!-- <p id="ingrCarac">Ingrese el número máximo de caracteres a leer:<input  id="inNumber" type="number" name="inNumber" [(ngModel)]="cantidadMaxima"></p> -->
-    <div class="input1">
-      <input #inputcrypt autocomplete="off" id="in1" placeholder="Código NFC" name="inputcrypt" class="input-field" type="text" [(ngModel)]="encryptar" (keydown.enter)="onClickEncrypt()"> 
+</app-modal>
+
+<app-modal 
+*ngIf="modalReset" [mensaje]="mensajeModalReset" 
+(modalChange)="onModalResetChange($event)" 
+(modalAcept)="onModalAceptReset($event)">
+</app-modal>
+
+<div *ngIf="!modalLogout && !modalSave && !modalReset" class="container">
+  <form class="form-group" >
+    <p id="heading">Introduzca el nombre del evento</p>
+    <div class="input2">
+      <input #inputevent autocomplete="off" id="in2" placeholder="Evento X" name="inputevent" class="input-field2"
+        type="text" [(ngModel)]="eventName" >
     </div>
-    <ul *ngIf="mostrarHash">
-      <li *ngFor="let codigo of getParCodigosKeys()">{{ codigo }}: {{ codigosNfc.get(codigo) }}</li>
-    </ul>
-    <div style="color: white">
-    </div>
-    <div class="bton">
-      <button [disabled]="showLoading" class="button1en" type="button" (click)="onClickEncrypt()">Encryptar</button>
-      <button class="button3cle" type="button" (click)="clear()">Clear</button>
-    </div>
-    <div class="bton">
-      <button class="button2des" type="button" (click)="mostrarLista()">{{ mostrarHash ? 'Ocultar códigos' : 'Mostrar códigos' }}</button>
-    </div>
-    <div class="matProgress">
-      <mat-progress-spinner  diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
-    </div> 
-    <div class="cont" > Códigos leídos: {{codigosLeidos}} 
+    <div class="bloq2">
+      <p id="heading">Pase el chip por el lector</p>
+      <div class="input1">
+        <input #inputcrypt autocomplete="off" id="in1" placeholder="Código NFC" name="inputcrypt" class="input-field"
+          type="text" [(ngModel)]="encryptar" (keydown.enter)="onClickEncrypt()" >
+      </div>
+      <div class="listHash">
+        <ul *ngIf="mostrarHash" class="listCodigos">
+          <li *ngFor="let codigo of getParCodigosKeys()">{{ codigo }}: {{ indexHash.get(codigo) }}</li>
+        </ul>
+      </div>
+      <div class="bton">
+        <button [disabled]="showLoading" class="button1en" type="button" (click)="onClickEncrypt()">Encryptar</button>
+        <button class="button2des" type="button" (click)="mostrarLista()">{{ mostrarHash ? 'Ocultar códigos' : 'Mostrarcódigos' }}</button>
+        <button class="button3cle" type="button" (click)="clearButtonClick()" (click)="clear()" >Clear</button>
+      </div>
+      <div class="bton">
+        <button class="button4sa" type="button" (click)="onClickSave()">Guardar</button>
+        <button class="button3cle" type="button" (click)="onClickReset()">Eliminar</button>
+      </div>
+      <div class="matProgress">
+        <mat-progress-spinner diameter="35" *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
+      </div>
+      <div class="cont"> Códigos leídos: {{codigosLeidos}}
+      </div>
     </div>
   </form>
 </div>

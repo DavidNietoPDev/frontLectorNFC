@@ -1,0 +1,10 @@
+<div class="contenedor" *ngIf="modal">
+  <div id="modal">
+    <p id="cierre">{{mensaje}}</p>
+    <ng-content></ng-content>
+    <div id="botones">
+      <button id="bton1" (click)="aceptModal()">Aceptar</button>
+      <button id="bton2" (click)="cancelModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

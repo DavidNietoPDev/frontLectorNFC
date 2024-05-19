@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ModalComponent } from './parseo/modal/modal.component';
 
 
 
@@ -23,6 +24,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     InicioSesionComponent,
     ParseoComponent,
     UserRegisterComponent,
+    ModalComponent,
 
     
   ],
