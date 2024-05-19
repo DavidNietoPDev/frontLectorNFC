@@ -52,31 +52,25 @@ export class ParseoComponent {
 
 
   onModalLogoutChange(value: boolean) {
-    console.log('logout change')
     this.modalLogout = value;
   }
   onModalAceptLogout(value: boolean) {
-    console.log('acept logout')
     this.modalAceptLogout = value;
   }
   onModalSaveChange(value: boolean) {
-    console.log('save change')
     this.modalSave = value;
   }
   onModalResetChange(value: boolean) {
-    console.log('reset change')
     this.modalReset = value;
   }
 
 
   onModalAceptSave(value: boolean) {
-    console.log('acept save')
     this.modalAceptSave = value;
     this.onSubmitSave();
 
   }
   onModalAceptReset(value: boolean) {
-    console.log('acept reset')
     this.modalResetAcept = value;
     this.aceptReset();
   }
@@ -87,17 +81,14 @@ export class ParseoComponent {
       try {                                             //Si existe el token lo decodificamos
         this.decodedToken = this.jwtHelper.decodeToken(this.token);
         if (!this.decodedToken) {
-          console.log('Error al decodificar el token.');
           return false;
         }
         this.iatDate = new Date(this.decodedToken.iat * 1000);
         this.expDate = new Date(this.decodedToken.exp * 1000);
         this.currentTime = new Date();
         if (this.expDate > this.currentTime) {                              // Si la fecha de expiración es mayor a la fecha actual el token es válido
-          console.log('Token válido.');
           return true;
-        } else {
-          console.log('Token expirado.');                               // En caso contrario el token no es válido y hay que volver a loguerase. 
+        } else {                            // En caso contrario el token no es válido y hay que volver a loguerase. 
           this.clearTokenExp();                                         // (Se podría renovar, pero haría falta otro endpoint que reciba el viejo y lo renueve)
           return false;
         }
@@ -276,10 +267,8 @@ export class ParseoComponent {
           for (let cod of error.error.duplicates) {
             this.errorDuplicates.push(cod)
           }
-            console.log(this.errorDuplicates)
         } else {
           this.snackBarAdded(error.error.error)
-          console.log(error.error.error)
         }
           
         this.showLoading = false;
