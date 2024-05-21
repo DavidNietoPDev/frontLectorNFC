@@ -235,12 +235,6 @@
   margin-bottom: 10%;
 }
 
-
-
-
-
-
-
 .codDup {
   width: 100%;
   display: flex;
@@ -256,3 +250,19 @@
 .list {
   color: white;
 }
+
+
+
+@media screen and (width <=900px) {
+  
+  .form-group {
+    margin-top: 150px;
+    width: 450px;
+  
+  }
+
+  .input1 {
+    width: 330px;
+  }
+}
+

@@ -157,5 +157,14 @@
   }
 
 
+
+    
+@media screen and (width <=900px) {
+  .form-group{
+    margin-top: -50px;
+  }
+}
+
+
   
 
